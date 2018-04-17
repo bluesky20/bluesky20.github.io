@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>如何写一个json parser | bluesky20的博客</title>
+  <title>进程与线程 | bluesky20的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1  将json string 处理成token list 1 .1 定义一个class 用于存每个token 的值和类型, 类型有string, keyword（true，false，null）, number，[, ] , {, }， 冒号和逗号 123456789101112131415class Token(object):    def __init__(self, token_typ">
-<meta name="keywords" content="json, parser, python">
+  <meta name="description" content="1.进程一个程序在现代操作系统上运行时，操作系统会提供一种假象，好像系统上只有这个程序在运行，看上去只有这个程序在使用处理器，内存，和 I/O 设备。这种假象是通过进程的概念实现的。 操作系统跟踪进程运行所需的所有状态信息（称为上下文）。上下文包括，程序计数器信息，寄存器的内容，用户栈，内核栈和各种内核数据结构，比如描绘地址空间的页表、包含当前进程信息的进程表、和包含进程已打开文件信息的文件表。">
+<meta name="keywords" content="进程, 线程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何写一个json parser">
-<meta property="og:url" content="http://yoursite.com/2018/04/16/如何写一个json-parser/index.html">
+<meta property="og:title" content="进程与线程">
+<meta property="og:url" content="http://yoursite.com/2018/04/17/进程与线程/index.html">
 <meta property="og:site_name" content="bluesky20的博客">
-<meta property="og:description" content="1  将json string 处理成token list 1 .1 定义一个class 用于存每个token 的值和类型, 类型有string, keyword（true，false，null）, number，[, ] , {, }， 冒号和逗号 123456789101112131415class Token(object):    def __init__(self, token_typ">
+<meta property="og:description" content="1.进程一个程序在现代操作系统上运行时，操作系统会提供一种假象，好像系统上只有这个程序在运行，看上去只有这个程序在使用处理器，内存，和 I/O 设备。这种假象是通过进程的概念实现的。 操作系统跟踪进程运行所需的所有状态信息（称为上下文）。上下文包括，程序计数器信息，寄存器的内容，用户栈，内核栈和各种内核数据结构，比如描绘地址空间的页表、包含当前进程信息的进程表、和包含进程已打开文件信息的文件表。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-04-16T16:18:32.000Z">
+<meta property="og:updated_time" content="2018-04-17T14:54:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何写一个json parser">
-<meta name="twitter:description" content="1  将json string 处理成token list 1 .1 定义一个class 用于存每个token 的值和类型, 类型有string, keyword（true，false，null）, number，[, ] , {, }， 冒号和逗号 123456789101112131415class Token(object):    def __init__(self, token_typ">
+<meta name="twitter:title" content="进程与线程">
+<meta name="twitter:description" content="1.进程一个程序在现代操作系统上运行时，操作系统会提供一种假象，好像系统上只有这个程序在运行，看上去只有这个程序在使用处理器，内存，和 I/O 设备。这种假象是通过进程的概念实现的。 操作系统跟踪进程运行所需的所有状态信息（称为上下文）。上下文包括，程序计数器信息，寄存器的内容，用户栈，内核栈和各种内核数据结构，比如描绘地址空间的页表、包含当前进程信息的进程表、和包含进程已打开文件信息的文件表。">
   
     <link rel="alternative" href="/atom.xml" title="bluesky20的博客" type="application/atom+xml">
   
@@ -141,44 +141,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-如何写一个json-parser" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-进程与线程" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      如何写一个json parser
+      进程与线程
     </h1>
   
 
         
-        <a href="/2018/04/16/如何写一个json-parser/" class="archive-article-date">
-  	<time datetime="2018-04-16T08:43:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-16</time>
+        <a href="/2018/04/17/进程与线程/" class="archive-article-date">
+  	<time datetime="2018-04-17T14:47:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<h3 id="1-将json-string-处理成token-list"><a href="#1-将json-string-处理成token-list" class="headerlink" title="1  将json string 处理成token list"></a>1  将json string 处理成token list</h3><ul>
-<li><p>1 .1 定义一个class 用于存每个token 的值和类型, 类型有<code>string</code>, <code>keyword（true，false，null）</code>, <code>number</code>，<code>[</code>, <code>]</code> , <code>{</code>, <code>}</code>， 冒号和逗号</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Token</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, token_type=None, value=None)</span>:</span></span><br><span class="line">        d = &#123;</span><br><span class="line">            <span class="string">':'</span>: Type.colon,</span><br><span class="line">            <span class="string">','</span>: Type.comma,</span><br><span class="line">            <span class="string">'&#123;'</span>: Type.braceLeft,</span><br><span class="line">            <span class="string">'&#125;'</span>: Type.braceRight,</span><br><span class="line">            <span class="string">'['</span>: Type.bracketLeft,</span><br><span class="line">            <span class="string">']'</span>: Type.bracketRight,</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> token_type == Type.auto:</span><br><span class="line">            self.type = d[value]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.type = token_type</span><br><span class="line">        self.value = value</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>1.2 遍历json string，如果是空格（包括\b \f \n \r \t), 跳过，其它类型则存一个对应的token。注意，对于string要处理转义字符，对于number要处理小数和负数。还要判断出number和string的结束下标。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loads</span><span class="params">(code)</span>:</span></span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    length = len(code)</span><br><span class="line">    tokens = []</span><br><span class="line">    spaces = <span class="string">' \b\f\n\r\t'</span></span><br><span class="line">    digits = <span class="string">'0123456789'</span></span><br><span class="line"></span><br><span class="line">    is_open = <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; length:</span><br><span class="line">        c = code[i]</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> c <span class="keyword">in</span> spaces:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">elif</span> c <span class="keyword">in</span> <span class="string">':,[]&#123;&#125;'</span>:</span><br><span class="line">            t = Token(Type.auto, c)</span><br><span class="line">            tokens.append(t)</span><br><span class="line">        <span class="keyword">elif</span> c == <span class="string">'"'</span> <span class="keyword">and</span> is_open:</span><br><span class="line">            result, index = string_end(code, i)</span><br><span class="line">            <span class="keyword">if</span> index != <span class="number">-1</span>:</span><br><span class="line">                t = Token(Type.string)</span><br><span class="line">                t.value = result</span><br><span class="line">                i = index</span><br><span class="line">                tokens.append(t)</span><br><span class="line">                is_open = <span class="keyword">not</span> is_open</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">elif</span> c == <span class="string">'"'</span> <span class="keyword">and</span> <span class="keyword">not</span> is_open:</span><br><span class="line">            is_open = <span class="keyword">not</span> is_open</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">elif</span> c <span class="keyword">in</span> digits:</span><br><span class="line">            offset = number_end(code, i)</span><br><span class="line">            t = Token(Type.number)</span><br><span class="line">            s = code[i<span class="number">-1</span>:i+offset]</span><br><span class="line">            <span class="comment"># 判断是否 float</span></span><br><span class="line">            <span class="keyword">if</span> <span class="string">'.'</span> <span class="keyword">in</span> s:</span><br><span class="line">                t.value = float(s)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                t.value = int(s)</span><br><span class="line">            i += offset</span><br><span class="line">            tokens.append(t)</span><br><span class="line">        <span class="keyword">elif</span> c <span class="keyword">in</span> <span class="string">'tfn'</span>:</span><br><span class="line">            <span class="comment"># true false null</span></span><br><span class="line">            kvs = dict(</span><br><span class="line">                t=<span class="string">'true'</span>,</span><br><span class="line">                f=<span class="string">'false'</span>,</span><br><span class="line">                n=<span class="string">'null'</span>,</span><br><span class="line">            )</span><br><span class="line">            t = Token(Type.keyword)</span><br><span class="line">            t.value = kvs[c]</span><br><span class="line">            tokens.append(t)</span><br><span class="line">            i += len(kvs[c])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">"*** 错误"</span>, c, code[i:i+<span class="number">10</span>])</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">return</span> tokens</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="2-将token-list-处理成-dict-和-list。"><a href="#2-将token-list-处理成-dict-和-list。" class="headerlink" title="2 将token list 处理成 dict 和 list。"></a>2 将token list 处理成 dict 和 list。</h3><ul>
-<li>2.1 取第一位token，删除token list里的第一位token</li>
-<li>2.2 如果token的类型不是大括号，也不是中括号，返回token的值</li>
-<li>2.3 如果token类型是左大括号，新建一个dict，遍历token list，取后2位元素后（key和冒号）将剩余token list的递归处理（用于处理嵌套的情况）拿到value ，然后判断token list的第一位元素是否逗号，如果是，删除逗号。继续下一个循环。循环结束后删除token list里结尾的右大括号, 返回dict。</li>
-<li>2.4 如果token类型是左中括号，新建一个list，遍历token list , 递归获取value，然后判断token list的第一位元素是否逗号，如果是，删除逗号。继续下一个循环。循环结束后删除token list里结尾的右中括号， 返回list。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(ts)</span>:</span></span><br><span class="line">    t = ts[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">del</span> ts[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">if</span> t.type == Type.braceLeft:</span><br><span class="line">        obj = &#123;&#125;</span><br><span class="line">        <span class="keyword">while</span> ts[<span class="number">0</span>].type != Type.braceRight:</span><br><span class="line">            k = ts[<span class="number">0</span>]</span><br><span class="line">            _colon = ts[<span class="number">1</span>]</span><br><span class="line">            <span class="comment"># 确保 k.type 必须是 string</span></span><br><span class="line">            <span class="keyword">assert</span> k.type == Type.string</span><br><span class="line">            <span class="comment"># 确保 _colon 必须是 colon</span></span><br><span class="line">            <span class="keyword">assert</span> _colon.type == Type.colon</span><br><span class="line">            <span class="keyword">del</span> ts[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">del</span> ts[<span class="number">0</span>]</span><br><span class="line">            v = parse(ts)</span><br><span class="line">            obj[k] = v</span><br><span class="line">            _comma = ts[<span class="number">0</span>]</span><br><span class="line">            <span class="comment"># 吃一个 逗号</span></span><br><span class="line">            <span class="keyword">if</span> _comma.type == Type.comma:</span><br><span class="line">                <span class="keyword">del</span> ts[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 结束 删除末尾的 '&#125;'</span></span><br><span class="line">        <span class="keyword">del</span> ts[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">return</span> obj</span><br><span class="line">    <span class="keyword">elif</span> t.type == Type.bracketLeft:</span><br><span class="line">        l = []</span><br><span class="line">        <span class="keyword">while</span> ts[<span class="number">0</span>].type != Type.bracketRight:</span><br><span class="line">            v = parse(ts)</span><br><span class="line">            <span class="comment"># 吃一个 逗号</span></span><br><span class="line">            _comma = ts[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">if</span> _comma.type == Type.comma:</span><br><span class="line">                <span class="keyword">del</span> ts[<span class="number">0</span>]</span><br><span class="line">            l.append(v)</span><br><span class="line">        <span class="comment"># 删除末尾的 ']'</span></span><br><span class="line">        <span class="keyword">del</span> ts[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">return</span> l</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> t.value</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>完整代码:  <a href="https://github.com/bluesky20/json-parser" target="_blank" rel="noopener">https://github.com/bluesky20/json-parser</a></p>
-
+        <h3 id="1-进程"><a href="#1-进程" class="headerlink" title="1.进程"></a>1.进程</h3><p>一个程序在现代操作系统上运行时，操作系统会提供一种假象，好像系统上只有这个程序在运行，看上去只有这个程序在使用处理器，内存，和 I/O 设备。这种假象是通过进程的概念实现的。</p>
+<p>操作系统跟踪进程运行所需的所有状态信息（称为上下文）。上下文包括，程序计数器信息，寄存器的内容，用户栈，内核栈和各种内核数据结构，比如描绘地址空间的页表、包含当前进程信息的进程表、和包含进程已打开文件信息的文件表。</p>
+<p>当操作系统把控制权转移给另一个进程时，就会保存当前进程的上下文，恢复新进程的上下文（上下文切换）</p>
+<p>每个进程轮流的使用CPU（由操作系统控制）。</p>
+<p>那现代操作系统里经常几十个进程，为什么有时候CPU占用不到10%呢？</p>
+<p>答案是：一个进程因为等待某个事件发生阻塞（比如读硬盘的时候，控制权就交给硬盘控制器了），这时当前进程就被挂起，切换到另一个进程。CPU占用不到10%，说明系统里所有进程都是被挂起的：都在等待外围设备。</p>
+<h3 id="2-线程"><a href="#2-线程" class="headerlink" title="2.线程"></a>2.线程</h3><p> 一个进程可以由多个称为线程的执行单元组成，每个线程都运行进程的上下文中，并共享同样的代码和全局数据。</p>
+<p> 线程是进程的执行单元。</p>
+<p> 线程同样由操作系统调度。<br> 每个线程都有自己的线程上下文，包括栈，寄存器和一个唯一的线程id（用于操作系统识别线程）。所有运行在一个进程里的线程共享该进程的整个虚拟地址空间，包括它的代码、数据、堆、和打开的文件，因此线程的切换要比进程的切换快的多。</p>
+<h3 id="参考书目：《深入理解计算机系统》"><a href="#参考书目：《深入理解计算机系统》" class="headerlink" title="参考书目：《深入理解计算机系统》"></a>参考书目：《深入理解计算机系统》</h3>
       
 
       
@@ -191,7 +183,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">json, parser, python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">进程, 线程</a>
         		</li>
       		
 		</ul>
@@ -247,7 +239,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/16/如何写一个json-parser/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/17/进程与线程/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -261,15 +253,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/04/17/hash-table/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          如何实现一个hash table
-        
-      </div>
-    </a>
   
+    <a href="/2018/04/17/hash-table/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">如何实现一个hash table</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 

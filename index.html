@@ -13,7 +13,7 @@
 <meta property="og:title" content="bluesky20的博客">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="bluesky20的博客">
-<meta property="og:locale" content="default">
+<meta property="og:locale" content="zh-cn">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="bluesky20的博客">
   
@@ -138,6 +138,167 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-进程与线程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/17/进程与线程/">进程与线程</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/17/进程与线程/" class="archive-article-date">
+  	<time datetime="2018-04-17T14:47:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-进程"><a href="#1-进程" class="headerlink" title="1.进程"></a>1.进程</h3><p>一个程序在现代操作系统上运行时，操作系统会提供一种假象，好像系统上只有这个程序在运行，看上去只有这个程序在使用处理器，内存，和 I/O 设备。这种假象是通过进程的概念实现的。</p>
+<p>操作系统跟踪进程运行所需的所有状态信息（称为上下文）。上下文包括，程序计数器信息，寄存器的内容，用户栈，内核栈和各种内核数据结构，比如描绘地址空间的页表、包含当前进程信息的进程表、和包含进程已打开文件信息的文件表。</p>
+<p>当操作系统把控制权转移给另一个进程时，就会保存当前进程的上下文，恢复新进程的上下文（上下文切换）</p>
+<p>每个进程轮流的使用CPU（由操作系统控制）。</p>
+<p>那现代操作系统里经常几十个进程，为什么有时候CPU占用不到10%呢？</p>
+<p>答案是：一个进程因为等待某个事件发生阻塞（比如读硬盘的时候，控制权就交给硬盘控制器了），这时当前进程就被挂起，切换到另一个进程。CPU占用不到10%，说明系统里所有进程都是被挂起的：都在等待外围设备。</p>
+<h3 id="2-线程"><a href="#2-线程" class="headerlink" title="2.线程"></a>2.线程</h3><p> 一个进程可以由多个称为线程的执行单元组成，每个线程都运行进程的上下文中，并共享同样的代码和全局数据。</p>
+<p> 线程是进程的执行单元。</p>
+<p> 线程同样由操作系统调度。<br> 每个线程都有自己的线程上下文，包括栈，寄存器和一个唯一的线程id（用于操作系统识别线程）。所有运行在一个进程里的线程共享该进程的整个虚拟地址空间，包括它的代码、数据、堆、和打开的文件，因此线程的切换要比进程的切换快的多。</p>
+<h3 id="参考书目：《深入理解计算机系统》"><a href="#参考书目：《深入理解计算机系统》" class="headerlink" title="参考书目：《深入理解计算机系统》"></a>参考书目：《深入理解计算机系统》</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">进程, 线程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/17/进程与线程/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-hash-table" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/17/hash-table/">如何实现一个hash table</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/17/hash-table/" class="archive-article-date">
+  	<time datetime="2018-04-17T12:44:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我们知道数组查找快，但插入和删除慢，而链表查找慢，插入和删除快。<br>那我们能不能综合2者的特性，做出一种查找快，插入和删除也快的数据结构？</p>
+<hr>
+<p>答案就是哈希表，以下是一种哈希表的详细实现方式：</p>
+<h3 id="1-定义一个数组，用于存放键值对，大小最好是素数，以得到更为合理的下标分布"><a href="#1-定义一个数组，用于存放键值对，大小最好是素数，以得到更为合理的下标分布" class="headerlink" title="1. 定义一个数组，用于存放键值对，大小最好是素数，以得到更为合理的下标分布"></a>1. 定义一个数组，用于存放键值对，大小最好是素数，以得到更为合理的下标分布</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HashTable</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.table_size = <span class="number">10007</span></span><br><span class="line">        self.table = [<span class="number">0</span>] * self.table_size</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+<h3 id="2-将要存入的key按一定规则算出一个整数"><a href="#2-将要存入的key按一定规则算出一个整数" class="headerlink" title="2. 将要存入的key按一定规则算出一个整数"></a>2. 将要存入的key按一定规则算出一个整数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_hash</span><span class="params">(self, s)</span>:</span></span><br><span class="line">    n = <span class="number">1</span></span><br><span class="line">    f = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">        n += ord(i) * f</span><br><span class="line">        f *= <span class="number">10</span></span><br><span class="line">    <span class="keyword">return</span> n</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="3-将算出的整数除以数组的长度取余，得到的值作为下标存入数组，存入时注意要存一个链表，将key和value作为数组同时存入，以解决不同key但下标一致的情况"><a href="#3-将算出的整数除以数组的长度取余，得到的值作为下标存入数组，存入时注意要存一个链表，将key和value作为数组同时存入，以解决不同key但下标一致的情况" class="headerlink" title="3. 将算出的整数除以数组的长度取余，得到的值作为下标存入数组，存入时注意要存一个链表，将key和value作为数组同时存入，以解决不同key但下标一致的情况"></a>3. 将算出的整数除以数组的长度取余，得到的值作为下标存入数组，存入时注意要存一个链表，将key和value作为数组同时存入，以解决不同key但下标一致的情况</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_index</span><span class="params">(self, key)</span>:</span></span><br><span class="line">    <span class="comment"># 计算出下标</span></span><br><span class="line">    <span class="keyword">return</span> self._hash(key) % self.table_size</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_insert_at_index</span><span class="params">(self, index, key, value)</span>:</span></span><br><span class="line">    v = self.table[index]</span><br><span class="line">    data = [key, value]</span><br><span class="line">    <span class="comment"># 检查下标处是否是第一次插入数据</span></span><br><span class="line">    <span class="keyword">if</span> v == <span class="number">0</span>:</span><br><span class="line">        <span class="comment"># 如果是第一次, 就插入一个 list 来存（解决hash碰撞的问题）</span></span><br><span class="line">        self.table[index] = [data]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 如果不是, 直接 append</span></span><br><span class="line">        self.table[index].append(data)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="完整代码：-https-github-com-bluesky20-binary-tree-blob-master-hash-table-py"><a href="#完整代码：-https-github-com-bluesky20-binary-tree-blob-master-hash-table-py" class="headerlink" title="完整代码： https://github.com/bluesky20/binary-tree/blob/master/hash_table.py"></a>完整代码： <a href="https://github.com/bluesky20/binary-tree/blob/master/hash_table.py" target="_blank" rel="noopener">https://github.com/bluesky20/binary-tree/blob/master/hash_table.py</a></h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">哈希表, python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/17/hash-table/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-如何写一个json-parser" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -322,7 +483,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">哈希表, python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">json, parser, python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">进程, 线程</a>
               </li>
             
             <div class="clearfix"></div>
@@ -376,6 +545,8 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">GitHub https://github.com/bluesky20</div>
   	  	
     	</section>
     
